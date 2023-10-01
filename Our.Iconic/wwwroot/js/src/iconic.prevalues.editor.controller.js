@@ -150,7 +150,7 @@
       }
 
       function loadPreConfigs() {
-        $http
+        return $http
           .get(
             umbRequestHelper.convertVirtualToAbsolutePath(
               "~/App_Plugins/Iconic/preconfigs.json"
@@ -158,13 +158,30 @@
           )
           .then(
             function (response) {
-              $scope.preconfig = response.data.preconfigs;
+                  $scope.preconfig = response.data.preconfigs;
             },
             function () {
               displayError("iconicErrors_loading_preconfigs");
             }
           );
-      }
+        }
+
+        function loadUserPreConfigs() {
+            $http
+                .get(
+                    umbRequestHelper.convertVirtualToAbsolutePath(
+                        "~/App_Plugins/Iconic/preconfigs.user.json"
+                    )
+                )
+                .then(
+                    function (response) {
+                        $scope.preconfig = $scope.preconfig.concat(response.data.preconfigs);
+                    },
+                    function () {
+                        displayError("iconicErrors_loading_userpreconfigs");
+                    }
+                );
+        }
 
       function isExternalUri(uri) {
         return uri.indexOf("://") > -1;
@@ -261,7 +278,9 @@
         );
       }
 
-      loadPreConfigs();
+        loadPreConfigs().then(function () {
+            loadUserPreConfigs();
+        });;      
       $scope.loadPreview();
     }
   );

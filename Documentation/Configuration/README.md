@@ -82,15 +82,30 @@ If everything is configured properly, and Iconic can extract a list of your icon
 
 ![Icon preview](icon-preview.png)
 
+### Saving your configuration
+Click the *Add Package* button to add the configuration to your packages listing. Before adding the package, Iconic will extract the css rules from the file using the regex selector. Some checking is ran that will let you know if something went wrong with your configuration.
+
+
 ## <a name="preconfigured"></a>Pre configured packages
 To make your life easier we have included some help to configure your packages in the form of pre-configured packages. If you select *Pre-Configured* when creating your package, you will have access to a list of pre-configured ones. You will still have to enter your css file path.
 
 ![Pre-configured package](addPreConfig.png)
 
+### User preconfigurations
 
-You can add as many packages you like. You can also arrange their order or remove those you don't want to use anymore.
+You can add your own preconfigurations. For this to work you will need to create an `/App_Plugins/Iconic/` file in your project and add the desired configurations in there. This file needs to look like:
 
-**Note**: the regex included in the preconfigs are valid for the **minimised versions** of them.
+``` json
+{
+  "preconfigs": [
+    {
+      "name": "My custom config",
+      "selector": "\\.(glyphicon-[\\w-]+):before{",
+      "template": "<i class=\"glyphicon {icon}\"></i>"
+    }
+  ]
+}
+```
+These configs will be added to the Iconic preconfigs. 
 
-### Saving your configuration
-Click the *Add Package* button to add the configuration to your packages listing. Before adding the package, Iconic will extract the css rules from the file using the regex selector. Some checking is ran that will let you know if something went wrong with your configuration.
+Note that the new config objects go in a `preconfigs` array and need to specify three properties: name, selector and template.
