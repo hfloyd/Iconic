@@ -41,6 +41,7 @@
   <area alias="iconicErrors">
     <key alias="analysing">There was an error extracting icon rules. Please check the files' paths and selector regex.</key>
     <key alias="loading_preconfigs">Error loading the preconfigs file.</key>
+    <key alias="loading_userpreconfigs">Error loading the user preconfigs file.</key>
     <key alias="loadingCss">Error loading the CSS file.</key>
     <key alias="no_rules">No icons were extracted, please check that the selector regex is correct.</key>
     <key alias="regexIssue">Error loading the regex, please check that it is a valid selector.</key>
