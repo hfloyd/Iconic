@@ -93,7 +93,7 @@ To make your life easier we have included some help to configure your packages i
 
 ### User preconfigurations
 
-You can add your own preconfigurations. For this to work you will need to create an `App_Plugins/Iconic/` file in your project and add the desired configurations in there. This file needs to look like:
+You can add your own preconfigurations. For this to work you will need to create an `/App_Plugins/Iconic/` file in your project and add the desired configurations in there. This file needs to look like:
 
 ``` json
 {
@@ -106,5 +106,6 @@ You can add your own preconfigurations. For this to work you will need to create
   ]
 }
 ```
+These configs will be added to the Iconic preconfigs. 
 
 Note that the new config objects go in a `preconfigs` array and need to specify three properties: name, selector and template.

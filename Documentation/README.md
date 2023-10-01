@@ -16,3 +16,10 @@ To contribute [Code](https://github.com/skartknet/Iconic/pulls), [Issues/Bugs](h
 
 ## Need Help?
 Head over to the [Discussions section](https://github.com/skartknet/Iconic/discussions/categories/q-a) to see if anyone else has solved you particular issue, or [add your own "Q&A" categorized post](https://github.com/skartknet/Iconic/discussions/new?category=q-a).
+
+# Changelog
+
+## v5.4
+- Update Material icons codepoints
+- Fixed Rules source file not taking default CSS file is empty. (#41)
+- Added support for user preconfigs
