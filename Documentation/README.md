@@ -14,8 +14,15 @@ If you have information to share about how to configure a specific icon set,  or
 
 To contribute [Code](https://github.com/skartknet/Iconic/pulls), [Issues/Bugs](https://github.com/skartknet/Iconic/issues), [Ideas, etc.](https://github.com/skartknet/Iconic/discussions) check out the [GitHub site](https://github.com/skartknet/Iconic).
 
+### Test Sites Credentials
+Username: admin@admin.com
+Password: 123123123123
+
+
 ## Need Help?
 Head over to the [Discussions section](https://github.com/skartknet/Iconic/discussions/categories/q-a) to see if anyone else has solved you particular issue, or [add your own "Q&A" categorized post](https://github.com/skartknet/Iconic/discussions/new?category=q-a).
+
+
 
 # Changelog
 

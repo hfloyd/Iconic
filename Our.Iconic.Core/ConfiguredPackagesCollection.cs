@@ -32,7 +32,7 @@ namespace Our.Iconic.Core
             this.dataTypeService = dataTypeService;
         }
 
-        public IDictionary<Guid, Package> GetConfiguratedPackages(IPublishedPropertyType propertyType)
+        public IDictionary<Guid, Package> GetConfiguredPackages(IPublishedPropertyType propertyType)
         {
             var uniqueKey = propertyType.DataType.Id.ToString();
             if (!_packagesCache.ContainsKey(uniqueKey))

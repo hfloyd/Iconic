@@ -10,27 +10,25 @@ namespace Our.Iconic.Core.Models
         public Guid Id { get; set; }
 
         [JsonProperty(PropertyName = "name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [JsonProperty(PropertyName = "selector")]
-        public string Selector { get; set; }
+        public string? Selector { get; set; }
 
         [JsonProperty(PropertyName = "template")]
-        public string FrontendTemplate { get; set; }
+        public string? Template { get; set; }
 
-        [JsonProperty(PropertyName = "backofficeTemplate")]
-        public string BackofficeTemplate { get; set; }
 
         [JsonProperty(PropertyName = "cssfile")]
-        public string CssFile { get; set; }
+        public string? CssFile { get; set; }
 
         [JsonProperty(PropertyName = "sourcefile")]
-        public string SourceFile { get; set; }
+        public string? SourceFile { get; set; }
 
         [JsonProperty(PropertyName = "extractedStyles")]
-        public IEnumerable<string> ExtractedStyles { get; set; }
+        public IEnumerable<string> ExtractedStyles { get; set; } = new List<string>();
 
         [JsonProperty(PropertyName = "filteredIcons")]
-        public IEnumerable<string> FilteredIcons { get; set; }
+        public IEnumerable<string> FilteredIcons { get; set; } = new List<string>();
     }
 }

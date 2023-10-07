@@ -1,21 +1,17 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Html;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Our.Iconic.Core.Models;
+using Our.Iconic.Core.Models.DeliveryApi;
 using System;
-#if NET5_0_OR_GREATER
-using Microsoft.AspNetCore.Html;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PropertyEditors;
+using Umbraco.Cms.Core.PropertyEditors.DeliveryApi;
 using Umbraco.Cms.Core.Services;
-#else
-using Umbraco.Core.Models.PublishedContent;
-using Umbraco.Core.PropertyEditors;
-using Umbraco.Core.Services;
-using System.Web;
-#endif
+
 namespace Our.Iconic.Core.ValueConverters
 {
-    public class IconicValueConverter : IPropertyValueConverter
+    public class IconicValueConverter : PropertyValueConverterBase, IDeliveryApiPropertyValueConverter
     {
         private readonly ConfiguredPackagesCollection _configuredPackages;
 
@@ -23,64 +19,82 @@ namespace Our.Iconic.Core.ValueConverters
         {
             _configuredPackages = configuredPackages;
         }
-        public bool IsConverter(IPublishedPropertyType propertyType)
+        public override bool IsConverter(IPublishedPropertyType propertyType)
              => propertyType.EditorAlias.Equals("our.iconic");
 
-        public Type GetPropertyValueType(IPublishedPropertyType propertyType)
+        public override Type GetPropertyValueType(IPublishedPropertyType propertyType)
             => typeof(HtmlString);
 
-        public PropertyCacheLevel GetPropertyCacheLevel(IPublishedPropertyType propertyType)
-            => PropertyCacheLevel.Elements;
-
-        public object ConvertSourceToIntermediate(IPublishedElement owner, IPublishedPropertyType propertyType, object source, bool preview)
+   
+        public override object? ConvertSourceToIntermediate(IPublishedElement owner, IPublishedPropertyType propertyType, object? source, bool preview)
         {
             if (source == null) return null;
 
             SelectedIcon icon;
             if (source is JObject jObject)
             {
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
                 icon = jObject.ToObject<SelectedIcon>();
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
             }
             else
             {
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+#pragma warning disable CS8604 // Possible null reference argument.
                 icon = JsonConvert.DeserializeObject<SelectedIcon>(source.ToString());
+#pragma warning restore CS8604 // Possible null reference argument.
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
             }
 
             return icon;
         }
 
-        public object ConvertIntermediateToObject(IPublishedElement owner, IPublishedPropertyType propertyType, PropertyCacheLevel referenceCacheLevel, object inter, bool preview)
+        public override object? ConvertIntermediateToObject(IPublishedElement owner, IPublishedPropertyType propertyType, PropertyCacheLevel referenceCacheLevel, object? inter, bool preview)
         {
             if (inter == null) return new HtmlString(string.Empty);
             string htmlString = string.Empty;
 
             var icon = (SelectedIcon)inter;
 
-            var packages = _configuredPackages.GetConfiguratedPackages(propertyType);
+            var packages = _configuredPackages.GetConfiguredPackages(propertyType);
 
             if (icon != null && packages.ContainsKey(icon.PackageId))
             {
                 var pckg = packages[icon.PackageId];
-                htmlString = pckg?.FrontendTemplate.Replace("{icon}", icon.Icon) ?? string.Empty;
+                htmlString = pckg?.Template?.Replace("{icon}", icon.Icon) ?? string.Empty;
             }
             return new HtmlString(htmlString);
         }
+   
 
-        public bool? IsValue(object value, PropertyValueLevel level)
+        public PropertyCacheLevel GetDeliveryApiPropertyCacheLevel(IPublishedPropertyType propertyType) => GetPropertyCacheLevel(propertyType);
+
+        public Type GetDeliveryApiPropertyValueType(IPublishedPropertyType propertyType) => typeof(IconicResponse);
+
+        public object? ConvertIntermediateToDeliveryApiObject(IPublishedElement owner,
+            IPublishedPropertyType propertyType, PropertyCacheLevel referenceCacheLevel, object? inter, bool preview,
+            bool expanding)
         {
-            if (value is null) return null;
+            if (inter == null) return null;
+            var result = new IconicResponse();
 
-            if (value is SelectedIcon && level == PropertyValueLevel.Inter) return true;
-            if (value is HtmlString && level == PropertyValueLevel.Object) return true;
-            if (value is JObject && level == PropertyValueLevel.Source) return true;
+            var icon = (SelectedIcon)inter;
+            result.Icon = icon.Icon;
 
+            var packages = _configuredPackages.GetConfiguredPackages(propertyType);
 
-            return false;
-        }
+            if (icon != null && packages.ContainsKey(icon.PackageId))
+            {
+                var pckg = packages[icon.PackageId];
 
-        public object ConvertIntermediateToXPath(IPublishedElement owner, IPublishedPropertyType propertyType, PropertyCacheLevel referenceCacheLevel, object inter, bool preview)
-        {
-            return null;
+                if (pckg != null)
+                {
+                    result.PackageId = pckg.Id;                    
+                    result.PackageName = pckg.Name;
+                }
+            }
+
+            return result;
         }
     }
 }
