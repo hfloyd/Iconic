@@ -38,8 +38,11 @@ namespace Our.Iconic.Core
             if (!_packagesCache.ContainsKey(uniqueKey))
             {
                 var dataType = dataTypeService.GetDataType(propertyType.DataType.Id);
-                var configurationJson = (IconicPackagesConfiguration)dataType.Configuration;
-                _packagesCache.Add(uniqueKey, configurationJson.Packages.ToDictionary(p => p.Id));
+                if (dataType?.Configuration is not null)
+                {
+                    var configurationJson = (IconicPackagesConfiguration)dataType.Configuration;
+                    _packagesCache.Add(uniqueKey, configurationJson.Packages.ToDictionary(p => p.Id));
+                }
             }
 
             return _packagesCache[uniqueKey];

@@ -9,6 +9,6 @@ namespace Our.Iconic.Core.Models
         public Guid PackageId { get; set; }
 
         [JsonProperty(PropertyName = "icon")]
-        public string Icon { get; set; }
+        public string Icon { get; set; } = String.Empty;
     }
 }

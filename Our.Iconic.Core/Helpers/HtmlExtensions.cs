@@ -1,11 +1,6 @@
-﻿#if NET5_0_OR_GREATER
-using Microsoft.AspNetCore.Html;
+﻿using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
-#else
-using System.Web;
-using System.Web.Mvc;
-#endif
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -21,11 +16,8 @@ namespace Our.Iconic.Core.Helpers
         /// <param name="htmlAttributes">Replaces an {attributes} placeholder in the icon template with the atttributes.</param>
         /// <param name="extraClasses">Replaces an {classes} placeholder in the icon template.</param>
         /// <returns></returns>
-#if NET5_0_OR_GREATER
+
         public static IHtmlContent RenderIcon(this IHtmlHelper helper, IHtmlContent icon, object htmlAttributes, params string[] extraClasses)
-#else
-        public static IHtmlString RenderIcon(this HtmlHelper helper, IHtmlString icon, object htmlAttributes, params string[] extraClasses)
-#endif
         {
 
             var htmlAttributesDict = HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
@@ -36,8 +28,9 @@ namespace Our.Iconic.Core.Helpers
                 attributesString.Append($"{ConvertToKebabCase(item.Key)}=\"{item.Value}\"");
             }
 
-            var modifiedTemplate = icon.ToString().Replace("{attributes}", attributesString.ToString())
-                                                  .Replace("{classes}", string.Join(" ", extraClasses));
+            var modifiedTemplate = icon is not null ? icon.ToString()?.Replace("{attributes}", attributesString.ToString())
+                                                  .Replace("{classes}", string.Join(" ", extraClasses))
+                                                  : string.Empty;
 
 
             return new HtmlString(modifiedTemplate);
