@@ -2,9 +2,8 @@ name: Our.Umbraco.Iconic - Release
 
 on:
   push:
-    branches:
-      - 'v12/main'
-      - 'v5/main'
+    branches: [ 'release/*' ]
+
 env:
   SOLUTION: Iconic.sln
   PLUGIN_PROJECT: Our.Iconic/Our.Iconic.csproj
