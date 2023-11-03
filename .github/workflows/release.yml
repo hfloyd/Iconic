@@ -2,7 +2,7 @@ name: Our.Umbraco.Iconic - Release
 
 on:
   push:
-    branches: [ master ]
+    branches: [ 'release/*' ]
 
 env:
   SOLUTION: Iconic.sln
