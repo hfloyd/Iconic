@@ -12,7 +12,7 @@
 	</Description>
 	<Product>$(AssemblyName)</Product>
 	<PackageTags>umbraco plugin package icon picker editor backoffice umbraco-marketplace</PackageTags>
-	<Version>5.4.0</Version>
+	<Version>5.4.1</Version>
 	<Authors>Mario Lopez</Authors>
 	<PackageProjectUrl>https://github.com/Skartknet/Iconic</PackageProjectUrl>
 	<PackageIcon>iconic_logo.png</PackageIcon>
@@ -78,6 +78,9 @@
       <CopyToPublishDirectory>Always</CopyToPublishDirectory>
     </Content>
     <Content Update="wwwroot\lang\es-ES.xml">
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\preconfigs.user.json">
       <CopyToPublishDirectory>Always</CopyToPublishDirectory>
     </Content>
     <Content Update="wwwroot\preconfigs.json">
