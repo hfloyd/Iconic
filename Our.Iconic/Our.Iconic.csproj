@@ -47,62 +47,62 @@
 		<ProjectReference Include="..\Our.Iconic.Core\Our.Iconic.Core.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<Content Update="wwwroot\js\build\findPolyfill.min.js">
-			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
-		</Content>
-		<Content Update="wwwroot\js\src\iconic.controller.js">
-			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
-		</Content>
-		<Content Update="wwwroot\js\src\iconic.dialog.controller.js">
-			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
-		</Content>
-		<Content Update="wwwroot\js\src\iconic.directives.js">
-			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
-		</Content>
-		<Content Update="wwwroot\js\src\iconic.models.js">
-			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
-		</Content>
-		<Content Update="wwwroot\js\src\iconic.prevalues.controller.js">
-			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
-		</Content>
-		<Content Update="wwwroot\js\src\iconic.prevalues.editor.controller.js">
-			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
-		</Content>
-		<Content Update="wwwroot\lang\en-US.xml">
-			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
-		</Content>
-		<Content Update="wwwroot\lang\es-ES.xml">
-			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
-		</Content>
-		<Content Update="wwwroot\preconfigs.json">
-			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
-		</Content>
-		<Content Update="wwwroot\Styles\iconic.css">
-			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
-		</Content>
-		<Content Update="wwwroot\Styles\iconic.min.css">
-			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
-		</Content>
-		<Content Update="wwwroot\Styles\iconic.min.css.map">
-			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
-		</Content>
-		<Content Update="wwwroot\Styles\iconic.scss">
-			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
-		</Content>
-		<Content Update="wwwroot\Views\iconic.dialog.html">
-			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
-		</Content>
-		<Content Update="wwwroot\Views\iconic.edit.dialog.html">
-			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
-		</Content>
-		<Content Update="wwwroot\Views\iconic.html">
-			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
-		</Content>
-		<Content Update="wwwroot\Views\iconic.prevalues.html">
-			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
-		</Content>
-	</ItemGroup>
+  <ItemGroup>
+    <Content Update="wwwroot\js\build\findPolyfill.min.js">
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\js\src\iconic.controller.js">
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\js\src\iconic.dialog.controller.js">
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\js\src\iconic.directives.js">
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\js\src\iconic.models.js">
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\js\src\iconic.prevalues.controller.js">
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\js\src\iconic.prevalues.editor.controller.js">
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lang\en-US.xml">
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lang\es-ES.xml">
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\preconfigs.json">
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\Styles\iconic.css">
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\Styles\iconic.min.css">
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\Styles\iconic.min.css.map">
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\Styles\iconic.scss">
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\Views\iconic.dialog.html">
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\Views\iconic.edit.dialog.html">
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\Views\iconic.html">
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\Views\iconic.prevalues.html">
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
 	<!-- Workaround for this bug (replace the analyzer name with the one you need to exclude (filename only, no extension) -->
 	<Target Name="RemoveLuceneAnalyzer" BeforeTargets="CoreCompile">
 		<ItemGroup>
