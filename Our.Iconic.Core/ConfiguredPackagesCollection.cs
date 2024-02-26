@@ -32,14 +32,17 @@ namespace Our.Iconic.Core
             this.dataTypeService = dataTypeService;
         }
 
-        public IDictionary<Guid, Package> GetConfiguratedPackages(IPublishedPropertyType propertyType)
+        public IDictionary<Guid, Package> GetConfiguredPackages(IPublishedPropertyType propertyType)
         {
             var uniqueKey = propertyType.DataType.Id.ToString();
             if (!_packagesCache.ContainsKey(uniqueKey))
             {
                 var dataType = dataTypeService.GetDataType(propertyType.DataType.Id);
-                var configurationJson = (IconicPackagesConfiguration)dataType.Configuration;
-                _packagesCache.Add(uniqueKey, configurationJson.Packages.ToDictionary(p => p.Id));
+                if (dataType?.Configuration is not null)
+                {
+                    var configurationJson = (IconicPackagesConfiguration)dataType.Configuration;
+                    _packagesCache.Add(uniqueKey, configurationJson.Packages.ToDictionary(p => p.Id));
+                }
             }
 
             return _packagesCache[uniqueKey];

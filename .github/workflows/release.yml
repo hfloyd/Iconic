@@ -2,7 +2,7 @@ name: Our.Umbraco.Iconic - Release
 
 on:
   push:
-    branches: [ master ]
+    branches: [ 'release/*' ]
 
 env:
   SOLUTION: Iconic.sln
@@ -34,11 +34,6 @@ jobs:
             echo ::set-output name=prerelease::false
         fi
     
-    - name: Setup .NET Core SDK 6.x
-      uses: actions/setup-dotnet@v3
-
-      with:
-        dotnet-version: 6.x
         
     - name: Setup .NET Core SDK 7.x
       uses: actions/setup-dotnet@v3
